@@ -31,6 +31,7 @@ chmod +x run.sh
 _____________
 
 Либо без скриптов:
+
 1.
 ```
 git clone https://github.com/Bednyakov/BLUM-autoplay.git
