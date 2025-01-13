@@ -18,6 +18,9 @@ def autoplay() -> None:
 
     client = TelegramClient(SESSION_NAME, API_ID, API_HASH, lang_code="ru")
     try:
+        print("\nПроверка или создание сессии...")
+        PHONE_NUMBER = input("\nPhone number: ")
+        client.start(phone=PHONE_NUMBER)
 
         token: dict = get_token(client=client, ref_token="dVebIvzKmr")
         access: str = token.get("access")
