@@ -18,9 +18,6 @@ def autoplay() -> None:
 
     client = TelegramClient(SESSION_NAME, API_ID, API_HASH, lang_code="ru")
     try:
-        print("\nПроверка или создание сессии...")
-        PHONE_NUMBER = input("\nPhone number: ")
-        client.start(phone=PHONE_NUMBER)
 
         token: dict = get_token(client=client, ref_token="dVebIvzKmr")
         access: str = token.get("access")
@@ -30,37 +27,30 @@ def autoplay() -> None:
         timestamp = 0
 
         while True:
-            if now(headers=headers) == 200:
 
-                if hours_since(timestamp=timestamp) > 3:
-                    timestamp = daily_reward(headers=headers)
-                    if not timestamp:
-                        token = refresh_token(refresh=refresh, headers=headers)
-                        access: str = token.get("access")
-                        refresh: str = token.get("refresh")
-                        headers.update({"Authorization": f"Bearer {access}"})
-                        timestamp = daily_reward(headers=headers)
-
-                passes = get_passes(headers=headers)
-                if passes > 0:
-                    game_id = play(headers=headers)
-                    time.sleep(31)
-                    game_result = claim2(game_id=game_id, headers=headers)
-                    if game_result != 200:
-                        token = refresh_token(refresh=refresh, headers=headers)
-                        access: str = token.get("access")
-                        refresh: str = token.get("refresh")
-                        headers.update({"Authorization": f"Bearer {access}"})
-                        timestamp = daily_reward(headers=headers)
-                        game_result = claim2(game_id=game_id, headers=headers)
-
-            else:
-                token = refresh_token(refresh=refresh, headers=headers)
-                access: str = token.get("access")
-                refresh: str = token.get("refresh")
-                headers.update({"Authorization": f"Bearer {access}"})
+            if hours_since(timestamp=timestamp) > 3:
                 timestamp = daily_reward(headers=headers)
-                time.sleep(3)
+                if not timestamp:
+                    token = refresh_token(refresh=refresh, headers=headers)
+                    access: str = token.get("access")
+                    refresh: str = token.get("refresh")
+                    headers.update({"Authorization": f"Bearer {access}"})
+                    timestamp = daily_reward(headers=headers)
+
+            passes = get_passes(headers=headers)
+            if passes > 0:
+                game_id = play(headers=headers)
+                time.sleep(31)
+                game_result = claim2(game_id=game_id, headers=headers)
+                if game_result != 200:
+                    token = refresh_token(refresh=refresh, headers=headers)
+                    access: str = token.get("access")
+                    refresh: str = token.get("refresh")
+                    headers.update({"Authorization": f"Bearer {access}"})
+                    timestamp = daily_reward(headers=headers)
+                    game_result = claim2(game_id=game_id, headers=headers)
+
+            time.sleep(3600)
 
     except Exception as e:
         return {"error": f"Ошибка выполнения: {e}"}
