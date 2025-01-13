@@ -62,3 +62,5 @@ python3 play.py
 ## Не забудь поставить звезду на GitHub!
 
 ![Пример работы программы](https://github.com/Bednyakov/BLUM-autoplay/blob/main/images/screen.png)
+
+## Автор программы не несёт ответственности за последствия от её использования!
