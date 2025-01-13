@@ -54,7 +54,7 @@ def play(headers: dict) -> str:
         response = requests.post(url=url, headers=headers)
         if response.status_code == 200:
             result = response.json()
-            print(f"\nНачалась игра {result.get("gameId")}.")
+            print(f'\nНачалась игра {result.get("gameId")}.')
             return result.get("gameId")
         
 
