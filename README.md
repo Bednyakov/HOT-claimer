@@ -61,4 +61,4 @@ python3 play.py
 
 ## Не забудь поставить звезду на GitHub!
 
-![Пример работы программы](https://github.com/Bednyakov/PyMoney/blob/main/images/xxx.jpg)
+![Пример работы программы](https://github.com/Bednyakov/BLUM-autoplay/blob/main/images/screen.png)
