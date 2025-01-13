@@ -54,7 +54,7 @@ def play(headers: dict) -> str:
         response = requests.post(url=url, headers=headers)
         if response.status_code == 200:
             result = response.json()
-            print(f"Началась игра {result.get("gameId")}.")
+            print(f"\nНачалась игра {result.get("gameId")}.")
             return result.get("gameId")
         
 
@@ -121,7 +121,7 @@ def claim2(game_id: str, headers: dict) -> int:
         game_data["challenge"]["hash"] = challenge["hash"]
         game_data["earnedPoints"]["BP"]["amount"] = points
         game_data["assetClicks"]["CLOVER"]["clicks"] = points
-        game_data["assetClicks"]["FREEZE"]["clicks"] = 2
+        game_data["assetClicks"]["FREEZE"]["clicks"] = 0
 
         encrypted_payload = encrypt_payload(json.dumps(game_data, separators=(",", ":")))
         payload = {"payload": encrypted_payload}
@@ -129,9 +129,9 @@ def claim2(game_id: str, headers: dict) -> int:
         for _ in range(5):
             response = requests.post(url=url, headers=headers, json=payload)
             if response.status_code == 200:
-                print(f"{game_id}: {response.status_code}.")
+                print(f"\n{game_id}. Status: {response.status_code}.")
                 return 200
-            print(response.status_code)
+            print(f"\n{game_id}. Status: {response.status_code}.")
             return response.status_code
     except Exception as e:
         print(e)
