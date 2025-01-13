@@ -54,7 +54,7 @@ pip install -r requirements.txt
 ```
 6.
 ```
-python3 main.py
+python3 play.py
 ```
 
 Вопросы задавать сюда -> [ТЫК](https://t.me/itpolice)
