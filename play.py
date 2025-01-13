@@ -39,18 +39,20 @@ def autoplay() -> None:
 
             passes = get_passes(headers=headers)
             if passes > 0:
-                game_id = play(headers=headers)
-                time.sleep(31)
-                game_result = claim2(game_id=game_id, headers=headers)
-                if game_result != 200:
-                    token = refresh_token(refresh=refresh, headers=headers)
-                    access: str = token.get("access")
-                    refresh: str = token.get("refresh")
-                    headers.update({"Authorization": f"Bearer {access}"})
-                    timestamp = daily_reward(headers=headers)
+                for _ in range(passes):
+                    game_id = play(headers=headers)
+                    time.sleep(31)
                     game_result = claim2(game_id=game_id, headers=headers)
+                    if game_result != 200:
+                        break
 
-            time.sleep(3600)
+            time.sleep(3600 * 3)
+            token = refresh_token(refresh=refresh, headers=headers)
+            access: str = token.get("access")
+            refresh: str = token.get("refresh")
+            headers.update({"Authorization": f"Bearer {access}"})
+            timestamp = daily_reward(headers=headers)
+            game_result = claim2(game_id=game_id, headers=headers)
 
     except Exception as e:
         return {"error": f"Ошибка выполнения: {e}"}
