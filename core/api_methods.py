@@ -42,9 +42,10 @@ def get_passes(headers: dict) -> int:
         response = requests.get(url=url, headers=headers)
         if response.status_code == 200:
             data = response.json()
-            passes: int = data.get("playPasses")
+            passes: int = data.get("playPasses", 0)
             print(f"Осталось {passes} билетов.")
             return passes
+    return 0
         
 
 def play(headers: dict) -> str:
