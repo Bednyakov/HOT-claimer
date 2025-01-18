@@ -1,6 +1,6 @@
 # Hot Wallet claimer
 
-1. Дополните файл .env:
+1. Создайте и дополните файл .env:
 
 ```
 HOT_TOKEN=MY_TOKEN
