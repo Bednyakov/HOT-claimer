@@ -24,14 +24,14 @@ fi
 echo "Установка зависимостей..."
 pip install -r requirements.txt
 
-if [ ! -f "play.py" ]; then
-    echo "Файл play.py не найден. Убедитесь, что он существует."
+if [ ! -f "main.py" ]; then
+    echo "Файл main.py не найден. Убедитесь, что он существует."
     deactivate
     exit
 fi
 
-echo "Запуск play.py..."
-python play.py
+echo "Запуск main.py..."
+python main.py
 
 echo "Завершение работы. Деактивируем виртуальное окружение."
 deactivate
